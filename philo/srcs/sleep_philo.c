@@ -6,7 +6,7 @@
 /*   By: amery <amery@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:52:00 by amery             #+#    #+#             */
-/*   Updated: 2023/06/29 10:50:40 by amery            ###   ########.fr       */
+/*   Updated: 2023/06/29 11:13:15 by amery            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	death(t_philo *philo, unsigned long t)
 {
 	pthread_mutex_lock(philo->c->write);
 	pthread_mutex_lock(philo->c->check_alive);
+	t = get_current_time_in_ms();
 	if (!philo->alive)
 	{
 		pthread_mutex_unlock(philo->c->check_alive);
@@ -59,7 +60,7 @@ int	death(t_philo *philo, unsigned long t)
 	}
 	philo->alive = 0;
 	pthread_mutex_unlock(philo->c->check_alive);
-	printf("%lu %i died\n", t - philo->c->t_start + 1, philo->name);
+	printf("%lu %i died\n", t - philo->c->t_start, philo->name);
 	pthread_mutex_lock(philo->c->end);
 	pthread_mutex_unlock(philo->c->end);
 	pthread_mutex_unlock(philo->c->write);

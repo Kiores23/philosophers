@@ -6,7 +6,7 @@
 /*   By: amery <amery@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 18:22:52 by amery             #+#    #+#             */
-/*   Updated: 2023/06/29 10:48:05 by amery            ###   ########.fr       */
+/*   Updated: 2023/06/29 11:21:33 by amery            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	philo_taken_a_fork(t_philo *philo)
 {
 	if (philo->p->time_to_eat > philo->p->time_to_sleep && philo->i != 0
 		&& !wait_philo(philo,
-			philo->p->time_to_eat - philo->p->time_to_sleep))
+			philo->p->time_to_eat - philo->p->time_to_sleep - 1))
 		return (0);
 	pthread_mutex_lock(&philo->fork);
 	if (!philo_write(philo, "has taken a fork") || (philo->p->nb_of_philo == 1
